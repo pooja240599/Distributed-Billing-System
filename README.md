@@ -1,3 +1,3 @@
 # Distributed Billing System Using Apache Kafka
 
-##Team Tech Titans
+## Team : Tech Titans
