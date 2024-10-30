@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Resource Usage Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas { display: block; width: 90%; max-width: 800px; margin: auto; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Real-Time Resource Usage Dashboard</h2>
+    <canvas id="cpuChart"></canvas>
+    <canvas id="memoryChart"></canvas>
+    <script>
+        const cpuChartCtx = document.getElementById('cpuChart').getContext('2d');
+        const memoryChartCtx = document.getElementById('memoryChart').getContext('2d');
+
+        const cpuChart = new Chart(cpuChartCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'CPU Usage (%)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: []
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        const memoryChart = new Chart(memoryChartCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Memory Usage (%)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    data: []
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Fetch data from API every 5 seconds and update charts
+        function updateDashboard() {
+            fetch('/api/usage')
+                .then(response => response.json())
+                .then(data => {
+                    const labels = [];
+                    const cpuDataByMachine = {};
+                    const memoryDataByMachine = {};
+        
+                    // Organize data by machine ID
+                    data.forEach(entry => {
+                        labels.push(new Date(entry.timestamp * 1000).toLocaleTimeString());
+                        const machineId = entry.machine_id;
+        
+                        if (!cpuDataByMachine[machineId]) {
+                            cpuDataByMachine[machineId] = [];
+                            memoryDataByMachine[machineId] = [];
+                        }
+                        cpuDataByMachine[machineId].push(entry.cpu_usage);
+                        memoryDataByMachine[machineId].push(entry.memory_usage);
+                    });
+        
+                    // Update CPU chart for each machine
+                    cpuChart.data.labels = labels;
+                    cpuChart.data.datasets = Object.keys(cpuDataByMachine).map(machineId => ({
+                        label: `CPU Usage (${machineId})`,
+                        borderColor: getRandomColor(),
+                        data: cpuDataByMachine[machineId]
+                    }));
+                    cpuChart.update();
+        
+                    // Update Memory chart for each machine
+                    memoryChart.data.labels = labels;
+                    memoryChart.data.datasets = Object.keys(memoryDataByMachine).map(machineId => ({
+                        label: `Memory Usage (${machineId})`,
+                        borderColor: getRandomColor(),
+                        data: memoryDataByMachine[machineId]
+                    }));
+                    memoryChart.update();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+        
+        // Helper function to get random colors for chart lines
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        
+
+        setInterval(updateDashboard, 5000); // Update every 5 seconds
+        updateDashboard(); // Initial load
+    </script>
+</body>
+</html>
