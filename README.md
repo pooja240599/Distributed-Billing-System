@@ -10,6 +10,7 @@
   4. [Sonal Bijitkar (032169473)](https://github.com/so-bit)
 
 ## Introduction:
+This project implements a distributed system for monitoring resource usage and calculating billing costs based on CPU and memory usage across multiple machines. It uses Apache Kafka for distributed messaging, enabling producers to send resource usage data to consumers who perform billing calculations. The system demonstrates the scalability and efficiency of Kafka in distributed computing environments.
 
 ## Table of Contents
 1. [Prerequisites](#Prerequisites)
@@ -18,8 +19,8 @@
 4. [Conclusion](#Conclusion)
 5. [References](#References)
 
-## Problem Statement :
-This project implements a distributed system for monitoring resource usage and calculating billing costs based on CPU and memory usage across multiple machines. It uses Apache Kafka for distributed messaging, enabling producers to send resource usage data to consumers who perform billing calculations. The system demonstrates the scalability and efficiency of Kafka in distributed computing environments.
+## Prerequisites
+
 
 ## Project Structure
 ##.
@@ -28,6 +29,14 @@ This project implements a distributed system for monitoring resource usage and c
 ##├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
 ##└── README.md          # Documentation for the project
 
+## Installation
+
+## Conclusion
+
+## References
+- [Apache Kafka Documentation](https://kafka.apache.org/documentation)
+- [Research Paper](https://ieeexplore.ieee.org/document/9361803/)
+  
 ##Features
 Real-Time Monitoring: Continuously tracks and displays CPU and memory usage for each machine.
 Interactive Dashboard: Provides an interactive visualization of CPU and memory usage.
