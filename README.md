@@ -23,7 +23,7 @@
 This project implements a distributed system for monitoring resource usage and calculating billing costs based on CPU and memory usage across multiple machines. It uses Apache Kafka for distributed messaging, enabling producers to send resource usage data to consumers who perform billing calculations. The system demonstrates the scalability and efficiency of Kafka in distributed computing environments.
 
 ## Project Structure
-##.
+## .
 ├── machine1.py        # API server to receive and handle resource data from workers
 ├── worker1.py         # Worker script to gather and send CPU and memory data
 ├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
