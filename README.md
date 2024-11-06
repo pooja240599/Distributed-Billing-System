@@ -12,12 +12,11 @@
 ## Introduction:
 
 ## Table of Contents
-[Prerequisites](#Prerequisites)
-[Project Structure](#Project_Structure)
-[Installation](#Installation)
-[Conclusion](#Conclusion)
-[References](#References)
-[Additional Notes](#Additional_Notes)
+1. [Prerequisites](#Prerequisites)
+2. [Project Structure](#Project_Structure)
+3. [Installation](#Installation)
+4. [Conclusion](#Conclusion)
+5. [References](#References)
 
 ## Problem Statement :
 This project implements a distributed system for monitoring resource usage and calculating billing costs based on CPU and memory usage across multiple machines. It uses Apache Kafka for distributed messaging, enabling producers to send resource usage data to consumers who perform billing calculations. The system demonstrates the scalability and efficiency of Kafka in distributed computing environments.
