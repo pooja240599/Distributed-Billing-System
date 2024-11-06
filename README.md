@@ -1,12 +1,23 @@
 # CECS-574 Distributed Billing System Using Apache Kafka
 
-## Team : Tech Titans
+## Team : Tech-Titans
 
 ## Team Members :
-  1. Pooja Devendra Chavan (030896136)
-  2. Sonal Bijitkar (032169473)
-  3. Mitali Manish Admuthe (032175856)
-  4. Joyli Rumao
+
+  1. [Mitali Manish Admuthe (032175856)](https://github.com/Mma5901)
+  2. [Joyli Marshal Rumao (032176935)](https://github.com/joyli-25)
+  3. [Pooja Devendra Chavan (030896136)](https://github.com/pooja240599)
+  4. [Sonal Bijitkar (032169473)](https://github.com/so-bit)
+
+## Introduction:
+
+## Table of Contents
+[Prerequisites](#Prerequisites)
+[Project Structure](#Project_Structure)
+[Installation](#Installation)
+[Conclusion](#Conclusion)
+[References](#References)
+[Additional Notes](#Additional_Notes)
 
 ## Problem Statement :
 This project implements a distributed system for monitoring resource usage and calculating billing costs based on CPU and memory usage across multiple machines. It uses Apache Kafka for distributed messaging, enabling producers to send resource usage data to consumers who perform billing calculations. The system demonstrates the scalability and efficiency of Kafka in distributed computing environments.
