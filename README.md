@@ -24,10 +24,10 @@ This project implements a distributed system for monitoring resource usage and c
 
 ## Project Structure
 ##.
-#├── machine1.py        # API server to receive and handle resource data from workers
-#├── worker1.py         # Worker script to gather and send CPU and memory data
-#├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
-#└── README.md          # Documentation for the project
+# ├── machine1.py        # API server to receive and handle resource data from workers
+# ├── worker1.py         # Worker script to gather and send CPU and memory data
+# ├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
+# └── README.md          # Documentation for the project
 
 ##Features
 Real-Time Monitoring: Continuously tracks and displays CPU and memory usage for each machine.
