@@ -3,48 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Resource Usage Dashboard</title>
+    <title>Real-Time Resource Usage and Billing Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         canvas { display: block; width: 90%; max-width: 800px; margin: auto; }
         h2 { text-align: center; }
+        .cost-display { text-align: center; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h2>Real-Time Resource Usage Dashboard</h2>
+    <h2>Real-Time Resource Usage and Billing Dashboard</h2>
     <canvas id="cpuChart"></canvas>
     <canvas id="memoryChart"></canvas>
+    <div id="costDisplay" class="cost-display"></div>
+
     <script>
         const cpuChartCtx = document.getElementById('cpuChart').getContext('2d');
         const memoryChartCtx = document.getElementById('memoryChart').getContext('2d');
 
+        // Initialize CPU and Memory charts with empty data
         const cpuChart = new Chart(cpuChartCtx, {
             type: 'line',
             data: {
                 labels: [],
-                datasets: [{
-                    label: 'CPU Usage (%)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: []
-                }]
+                datasets: []
             },
-            options: { responsive: true }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'CPU Usage (%)'
+                    }
+                }
+            }
         });
 
         const memoryChart = new Chart(memoryChartCtx, {
             type: 'line',
             data: {
                 labels: [],
-                datasets: [{
-                    label: 'Memory Usage (%)',
-                    borderColor: 'rgb(54, 162, 235)',
-                    data: []
-                }]
+                datasets: []
             },
-            options: { responsive: true }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Memory Usage (%)'
+                    }
+                }
+            }
         });
 
-        // Fetch data from API every 5 seconds and update charts
+        // Fetch data from API every 5 seconds and update charts and cost display
         function updateDashboard() {
             fetch('/api/usage')
                 .then(response => response.json())
@@ -52,42 +70,63 @@
                     const labels = [];
                     const cpuDataByMachine = {};
                     const memoryDataByMachine = {};
-        
+                    const totalCostByMachine = {};
+
                     // Organize data by machine ID
                     data.forEach(entry => {
-                        labels.push(new Date(entry.timestamp * 1000).toLocaleTimeString());
+                        const timeLabel = new Date(entry.timestamp * 1000).toLocaleTimeString();
+                        if (!labels.includes(timeLabel)) labels.push(timeLabel);
+                        
                         const machineId = entry.machine_id;
-        
                         if (!cpuDataByMachine[machineId]) {
                             cpuDataByMachine[machineId] = [];
                             memoryDataByMachine[machineId] = [];
+                            totalCostByMachine[machineId] = entry.total_cost;  // Store total cost for each machine
                         }
                         cpuDataByMachine[machineId].push(entry.cpu_usage);
                         memoryDataByMachine[machineId].push(entry.memory_usage);
                     });
-        
+
                     // Update CPU chart for each machine
                     cpuChart.data.labels = labels;
                     cpuChart.data.datasets = Object.keys(cpuDataByMachine).map(machineId => ({
                         label: `CPU Usage (${machineId})`,
                         borderColor: getRandomColor(),
-                        data: cpuDataByMachine[machineId]
+                        data: cpuDataByMachine[machineId],
+                        fill: false
                     }));
                     cpuChart.update();
-        
+
                     // Update Memory chart for each machine
                     memoryChart.data.labels = labels;
                     memoryChart.data.datasets = Object.keys(memoryDataByMachine).map(machineId => ({
                         label: `Memory Usage (${machineId})`,
                         borderColor: getRandomColor(),
-                        data: memoryDataByMachine[machineId]
+                        data: memoryDataByMachine[machineId],
+                        fill: false
                     }));
                     memoryChart.update();
+
+                    // Update total cost display
+                    updateCostDisplay(totalCostByMachine);
                 })
                 .catch(error => console.error('Error fetching data:', error));
         }
-        
-        // Helper function to get random colors for chart lines
+
+        // Display the total cost for each machine
+        function updateCostDisplay(totalCostByMachine) {
+            const costDisplayDiv = document.getElementById('costDisplay');
+            costDisplayDiv.innerHTML = '';  // Clear existing content
+
+            Object.keys(totalCostByMachine).forEach(machineId => {
+                const cost = totalCostByMachine[machineId].toFixed(2);
+                const costElement = document.createElement('p');
+                costElement.textContent = `Total Cost for ${machineId}: $${cost}`;
+                costDisplayDiv.appendChild(costElement);
+            });
+        }
+
+        // Helper function to generate random colors for chart lines
         function getRandomColor() {
             const letters = '0123456789ABCDEF';
             let color = '#';
@@ -96,10 +135,9 @@
             }
             return color;
         }
-        
 
-        setInterval(updateDashboard, 5000); // Update every 5 seconds
-        updateDashboard(); // Initial load
+        setInterval(updateDashboard, 5000);  // Update every 5 seconds
+        updateDashboard();  // Initial load
     </script>
 </body>
 </html>
