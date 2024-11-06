@@ -52,6 +52,10 @@ This project implements a distributed system for monitoring resource usage and c
 - **Tkinter:** Python library for the client machine’s user interface
 
 ## Installation
+- **Set up Kafka:**Install and configure Apache Kafka. Start the Kafka server.
+- ```bash```
+- java -cp "libs/*;config" kafka.Kafka config\server.properties
+- 
 
 ## Conclusion
 
