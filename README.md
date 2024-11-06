@@ -55,7 +55,9 @@ This project implements a distributed system for monitoring resource usage and c
 - **Set up Kafka:** Install and configure Apache Kafka. Start the Kafka server.
   ```bash
   java -cp "libs/*;config" kafka.Kafka config\server.properties
-- 
+- **Start the Zookeeper instance:** Open a terminal and navigate to your Kafka directory. Start Zookeeper (if you haven't started it yet).
+  ```bash
+  C:\Users\abc\Downloads\kafka_2.13-3.8.0\kafka_2.13-3.8.0 java -cp "libs/*;config" 
 
 ## Conclusion
 
