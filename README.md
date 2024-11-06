@@ -15,19 +15,41 @@ This project implements a distributed system for monitoring resource usage and c
 ## Table of Contents
 1. [Prerequisites](#Prerequisites)
 2. [Project Structure](#Project_Structure)
-3. [Installation](#Installation)
-4. [Conclusion](#Conclusion)
-5. [References](#References)
+3. [Technologies used](#Technologies_used)
+4. [Installation](#Installation)
+5. [Conclusion](#Conclusion)
+6. [References](#References)
 
 ## Prerequisites
 
 
 ## Project Structure
+
+<!--
 ##.
 ##├── machine1.py        # API server to receive and handle resource data from workers
 ##├── worker1.py         # Worker script to gather and send CPU and memory data
 ##├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
 ##└── README.md          # Documentation for the project
+-->
+```plaintext
+
+├── worker.py              # Main worker script for data processing and billing calculations
+├── machine.py             # Client machine script for sending resource usage data
+├── requirements.txt       # Project dependencies
+├── README.md              # Project documentation
+├── templates/
+│   └── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
+└── database/
+    └── billing.db         # SQLite database storing resource usage and billing data
+```
+
+## Technologies used
+
+- **Apache Kafka:** Distributed data streaming platform for task distribution and fault tolerance
+- **SQLite:** Lightweight database for storing usage data and calculated costs
+- **psutil:** Python library for gathering system resource usage data
+- **Tkinter:** Python library for the client machine’s user interface
 
 ## Installation
 
