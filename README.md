@@ -66,17 +66,8 @@ This project implements a distributed system for monitoring resource usage and c
 - [Apache Kafka Documentation](https://kafka.apache.org/documentation)
 - [Research Paper](https://ieeexplore.ieee.org/document/9361803/)
   
-##Features
-Real-Time Monitoring: Continuously tracks and displays CPU and memory usage for each machine.
-Interactive Dashboard: Provides an interactive visualization of CPU and memory usage.
-Multi-Machine Support: Handles resource data from multiple machines by running an instance of worker1.py on each machine.
-Customizable Fetch Interval: The dashboard fetches data every 5 seconds by default, but this interval can be modified.
+## Real Time Dashboard
+![image](https://github.com/user-attachments/assets/31dba240-04b4-4d21-b381-701c02e09390)
+![image](https://github.com/user-attachments/assets/3681c15f-ae37-4c2d-8163-cff13a5c0895)
 
-##Requirements
-Python Dependencies
-This project requires Python 3.x and the Flask framework for the API server. Install Flask with:
-
-bash
-Copy code
-pip install flask
 
