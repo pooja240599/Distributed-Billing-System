@@ -23,6 +23,28 @@ This project implements a distributed system for monitoring resource usage and c
 
 ## Prerequisites
 
+Ensure the following software and libraries are installed before setting up the project:
+
+1. **Python 3.7+**: Required to run the scripts.
+   - [Python Installation Guide](https://www.python.org/downloads/)
+
+2. **Apache Kafka and Zookeeper**: Install and configure for data streaming and message handling.
+   - [Kafka Download and Setup](https://kafka.apache.org/downloads)
+
+3. **Kafka-Python Library**: Connects Python scripts with Kafka.
+   ```bash
+   pip install kafka-python
+
+4. **Flask**: Used to create the REST API for fetching usage and billing data.
+   ```bash
+   pip install flask
+
+5. **psutil Library**: For monitoring CPU and memory usage on machine clients.
+   ```bash
+   pip install psutil
+   
+
+
 
 ## Project Structure
 
