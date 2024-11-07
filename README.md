@@ -14,25 +14,18 @@ This project implements a distributed system for monitoring resource usage and c
 
 ## Table of Contents
 1. [Prerequisites](#Prerequisites)
-2. [Project Structure](#Project_Structure)
-3. [Technologies used](#Technologies_used)
+2. [Project Structure](#Project-Structure)
+3. [Technologies used](#Technologies-used)
 4. [Installation](#Installation)
 5. [Conclusion](#Conclusion)
 6. [References](#References)
-7. [Real Time Dashboard](#Real_Time_Dshboard)
+7. [Real Time Dashboard](#Real-Time-Dshboard)
 
 ## Prerequisites
 
 
 ## Project Structure
 
-<!--
-##.
-##├── machine1.py        # API server to receive and handle resource data from workers
-##├── worker1.py         # Worker script to gather and send CPU and memory data
-##├── dashboard.html     # Front-end HTML file to visualize resource usage in real-time
-##└── README.md          # Documentation for the project
--->
 ```plaintext
 
 ├── worker.py              # Main worker script for data processing and billing calculations
