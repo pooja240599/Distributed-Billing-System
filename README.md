@@ -19,6 +19,7 @@ This project implements a distributed system for monitoring resource usage and c
 4. [Installation](#Installation)
 5. [Conclusion](#Conclusion)
 6. [References](#References)
+7. [Real Time Dashboard](#Real_Time_Dshboard)
 
 ## Prerequisites
 
