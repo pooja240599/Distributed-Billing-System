@@ -42,9 +42,6 @@ Ensure the following software and libraries are installed before setting up the 
 5. **psutil Library**: For monitoring CPU and memory usage on machine clients.
    ```bash
    pip install psutil
-   
-
-
 
 ## Project Structure
 
@@ -68,15 +65,33 @@ Ensure the following software and libraries are installed before setting up the 
 - **Tkinter:** Python library for the client machine’s user interface
 
 ## Installation
+
+
+- **Clone the Repository:** Clone the project repository to your local machine and navigate into the directory
+  ```bash
+  git clone https://github.com/pooja240599/Distributed-Billing-System.git
+  cd Distributed-Billing-System
 - **Set up Kafka:** Install and configure Apache Kafka. Start the Kafka server.
   ```bash
   java -cp "libs/*;config" kafka.Kafka config\server.properties
 - **Start the Zookeeper instance:** Open a terminal and navigate to your Kafka directory. Start Zookeeper (if you haven't started it yet).
   ```bash
   C:\Users\abc\Downloads\kafka_2.13-3.8.0\kafka_2.13-3.8.0 java -cp "libs/*;config"
-- **Create a Kafka Topic:** 
+- **Create a Kafka Topic:**
+  ```bash
+  bin/kafka-topics.sh --create --topic resource_usage --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+- **Run Producer and Consumer code**
+  ```bash
+  python worker.py
+  python machine.py
+
 
 ## Conclusion
+This project illustrates Apache Kafka's potential for real-time distributed monitoring and billing. 
+By separating data production from billing calculations, Kafka enables high-throughput 
+processing, fault tolerance, and scalability, meeting the requirements of complex, distributed 
+systems.
 
 ## References
 - [Apache Kafka Documentation](https://kafka.apache.org/documentation)
